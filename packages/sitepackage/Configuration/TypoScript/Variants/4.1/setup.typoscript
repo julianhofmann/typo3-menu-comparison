@@ -1,0 +1,59 @@
+// ----------------------------------------------------------------------
+//  TypoScript based menu - additional caching part
+//  @see https://stichwort.org/typo3/typoscript/mega-menue-mit-cache-optimieren/
+// ----------------------------------------------------------------------
+
+lib.mainNavigation {
+  10 {
+    5 = LOAD_REGISTER
+    5.currentRootlinePids.cObject = HMENU
+    5.currentRootlinePids.cObject {
+      special = rootline
+      special.range = 0|-1
+      1 = TMENU
+      1 {
+        NO {
+          doNotLinkIt = 1
+          stdWrap.cObject = TEXT
+          stdWrap.cObject.field = uid
+          wrapItemAndSub = |, |*| |, |*| |
+        }
+      }
+    }
+
+    // 10 = HMENU
+    10 {
+      cache {
+        key {
+          cObject = TEXT
+          cObject.value = 3
+          cObject.wrap = mainnav-|
+          cObject.override.if.isInList = 3
+          cObject.override.if.value.data = register:currentRootlinePids
+        }
+      }
+    }
+
+    20.cache.key.cObject.value = 189
+    20.cache.key.cObject.override.if.isInList = 189
+
+    30.cache.key.cObject.value = 4
+    30.cache.key.cObject.override.if.isInList = 4
+
+    40.cache.key.cObject.value = 1023
+    40.cache.key.cObject.override.if.isInList = 1023
+
+    50.cache.key.cObject.value = 7
+    50.cache.key.cObject.override.if.isInList = 7
+
+    60.cache.key.cObject.value = 8
+    60.cache.key.cObject.override.if.isInList = 8
+
+    70.cache.key.cObject.value = 49
+    70.cache.key.cObject.override.if.isInList = 49
+
+    80.cache.key.cObject.value = 804
+    80.cache.key.cObject.override.if.isInList = 804
+
+  }
+}

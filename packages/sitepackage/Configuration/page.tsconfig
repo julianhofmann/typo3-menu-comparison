@@ -1,0 +1,13 @@
+TCEFORM {
+  sys_template {
+    clear.disabled = 1
+    root.disabled = 1
+    basedOn.disabled = 1
+    includeStaticAfterBasedOn.disabled = 1
+    static_file_mode.disabled = 1
+    hidden.disabled = 1
+    starttime.disabled = 1
+    endtime.disabled = 1
+    description.disabled = 1
+  }
+}

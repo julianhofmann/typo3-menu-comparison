@@ -1,0 +1,20 @@
+// ----------------------------------------------------------------------
+//  Fluid based menu
+// ----------------------------------------------------------------------
+
+page {
+  10 {
+    partialRootPaths {
+      10 = EXT:sitepackage/Resources/Private/Partials/Variants/1/
+    }
+
+    dataProcessing.10  >
+    dataProcessing.10 = menu
+    dataProcessing.10 {
+      levels = 5
+      as = mainNavigation
+      expandAll = 1
+      titleField = nav_title // title
+    }
+  }
+}

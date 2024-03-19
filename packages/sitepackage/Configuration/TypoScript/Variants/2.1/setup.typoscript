@@ -1,0 +1,18 @@
+// ----------------------------------------------------------------------
+//  Fluid based menu using b13/menus dataprocessors
+// ----------------------------------------------------------------------
+
+page {
+  10 {
+    partialRootPaths {
+      10 = EXT:sitepackage/Resources/Private/Partials/Variants/2.1/
+    }
+
+    dataProcessing.10  >
+    dataProcessing.10 = B13\Menus\DataProcessing\TreeMenu
+    dataProcessing.10 {
+      depth = 5
+      as = mainNavigation
+    }
+  }
+}

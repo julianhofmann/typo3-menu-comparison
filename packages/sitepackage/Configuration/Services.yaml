@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  JulianHofmann\Sitepackage\:
+    resource: '../Classes/*'
+
+  JulianHofmann\Sitepackage\Event\Listener\AddLinkToMenuItemsEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'sitepackage/add-link-to-menuitems'

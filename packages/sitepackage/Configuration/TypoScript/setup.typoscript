@@ -1,0 +1,150 @@
+config {
+  contentObjectExceptionHandler = 0
+  sendCacheHeaders = 1
+}
+
+page >
+page = PAGE
+page {
+  typeNum = 0
+
+  10 = FLUIDTEMPLATE
+  10 {
+    templateName = Default
+    templateRootPaths {
+      10 = EXT:sitepackage/Resources/Private/Templates/Page/
+    }
+  }
+
+  // --------------------------------------------------------------------
+  // Example menu - Layout stuff
+  //
+  //   Bootstrap multilevel dropdown menu
+  //   @see https://bootstrap-menu.com/_bootstrap4/detail-multilevel.html
+  //
+  includeJSLibs {
+    jquery = https://code.jquery.com/jquery-2.2.4.min.js
+    jquery {
+      external = 1
+      integrity = sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=
+      crossorigin = anonymous
+    }
+
+    bootstrap = https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js
+    bootstrap {
+      external = 1
+    }
+  }
+  jsInline {
+    10 = TEXT
+    10.value(
+      // Prevent closing from click inside dropdown
+      $(document).on('click', '.dropdown-menu', function (e) {
+        e.stopPropagation();
+      });
+
+      // make it as accordion for smaller screens
+      if ($(window).width() < 992) {
+        $('.dropdown-menu a').click(function(e){
+          e.preventDefault();
+            if($(this).next('.submenu').length){
+              $(this).next('.submenu').toggle();
+            }
+            $('.dropdown').on('hide.bs.dropdown', function () {
+            $(this).find('.submenu').hide();
+        })
+        });
+      }
+    )
+  }
+
+  includeCSS {
+    bootstrap = https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css
+  }
+  cssInline {
+    10 = TEXT
+    10.value(
+      @media (min-width: 992px){
+        .dropdown-menu .dropdown-toggle:after{
+          border-top: .3em solid transparent;
+          border-right: 0;
+          border-bottom: .3em solid transparent;
+          border-left: .3em solid;
+        }
+        .dropdown-menu .dropdown-menu{
+          margin-left:0; margin-right: 0;
+        }
+        .dropdown-menu li{
+          position: relative;
+        }
+        .nav-item .submenu{
+          display: none;
+          position: absolute;
+          left:100%; top:-7px;
+        }
+        .nav-item .submenu-left{
+          right:100%; left:auto;
+        }
+        .dropdown-menu > li:hover{ background-color: #f1f1f1 }
+        .dropdown-menu > li:hover > .submenu{
+          display: block;
+        }
+      }
+    )
+    20 = TEXT
+    20.value(
+      a.nav-link.active,
+      a.nav-item.active,
+      a.dropdown-item.active {
+        font-style: italic;
+      }
+      a.nav-link.current,
+      a.nav-item.current,
+      a.dropdown-item.current {
+        font-style: italic;
+        font-weight: bold;
+      }
+    )
+
+    30 = TEXT
+    30.value(
+      .bg-primary,
+      .dropdown-item.active,
+      .dropdown-item:active{
+        background-color: #A5c85a !important;
+      }
+      .navbar-dark .navbar-nav .nav-link {
+        color: rgba(255,255,255,.75);
+      }
+      .navbar-dark .navbar-nav .nav-link:hover {
+        color: rgba(255,255,255,1);
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+          font-optical-sizing: auto;
+          font-weight: 300;
+          font-style: normal;
+          font-variation-settings:
+            "wdth" 100;
+      }
+      h1, h2, h3, h4 {
+        font-family: "Open Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-style: normal;
+        font-variation-settings:
+          "wdth" 100;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    )
+  }
+  includeCSS {
+    opensans300 = https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&display=swap
+    opensans700 = https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;1,700&display=swap
+
+  }
+}
+
+@import 'EXT:seo/Configuration/TypoScript/XmlSitemap/setup.typoscript'

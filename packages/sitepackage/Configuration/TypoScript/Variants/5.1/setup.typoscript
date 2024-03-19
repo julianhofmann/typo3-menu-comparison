@@ -1,0 +1,88 @@
+// ----------------------------------------------------------------------
+//  TypoScript based menu - additional caching part for two-level cache
+// ----------------------------------------------------------------------
+
+lib.mainNavigation {
+  10 {
+    5 = LOAD_REGISTER
+    5.currentRootlinePids.cObject = HMENU
+    5.currentRootlinePids.cObject {
+      special = rootline
+      special.range = 0|-1
+      1 = TMENU
+      1 {
+        NO {
+          doNotLinkIt = 1
+          stdWrap.cObject = TEXT
+          stdWrap.cObject.field = uid
+          wrapItemAndSub = |, |*| |, |*| |
+        }
+      }
+    }
+
+    10 {
+      // Falls die aktuelle Seite nicht in diesem Teil des Menüs ist (d.h. der Menü-Startpunkt
+      // nicht in der Rootline der aktuellen Seite enthalten ist), holen wir das Menü aus dem Cache
+      1.NO.stdWrap.cObject.20.cache {
+        key {
+          cObject = TEXT
+          cObject {
+            value.field = uid
+            override {
+              data = page:uid
+              wrap = |_cur
+              if {
+                value.data = register:currentRootlinePids
+                isInList.field = uid
+              }
+            }
+
+            wrap = mainnav-lvl1-|_{siteLanguage:languageId}
+          }
+
+          insertData = 1
+        }
+
+        lifetime = 43200
+        tags = mainnavigation
+      }
+
+      1.NO.stdWrap.cObject.20.2 {
+        NO {
+          stdWrap {
+            cObject {
+              20 {
+
+                // Falls die aktuelle Seite nicht in diesem Teil des Menüs ist (d.h. der Menü-Startpunkt
+                // nicht in der Rootline der aktuellen Seite enthalten ist), holen wir das Menü aus dem Cache
+                cache {
+                  key {
+                    cObject = TEXT
+                    cObject {
+                      value.field = uid
+                      override {
+                        data = page:uid
+                        wrap = |_cur
+                        if {
+                          value.data = register:currentRootlinePids
+                          isInList.field = uid
+                        }
+                      }
+
+                      wrap = mainnav-lvl2-|_{siteLanguage:languageId}
+                    }
+
+                    insertData = 1
+                  }
+
+                  lifetime = 43200
+                  tags = mainnavigation
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

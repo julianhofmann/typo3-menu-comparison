@@ -1,0 +1,20 @@
+{
+  "name": "julianhofmann/sitepackage",
+  "description": "A comparison of different ways to create menus in TYPO3.",
+  "license": "GPL-2.0-or-later",
+  "type": "typo3-cms-extension",
+  "require": {
+    "typo3/cms-core": "^12.4",
+    "typo3/cms-seo": "^12.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "JulianHofmann\\Sitepackage\\": "Classes"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "sitepackage"
+    }
+  }
+}

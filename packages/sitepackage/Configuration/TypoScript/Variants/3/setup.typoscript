@@ -1,0 +1,102 @@
+// ----------------------------------------------------------------------
+//  TypoScript based menu
+// ----------------------------------------------------------------------
+
+page {
+  10 {
+    partialRootPaths {
+      10 = EXT:sitepackage/Resources/Private/Partials/Variants/3/
+    }
+
+    dataProcessing >
+  }
+}
+
+lib.mainNavigation >
+lib.mainNavigation = COA
+lib.mainNavigation {
+  stdWrap.wrap = <nav class="navbar navbar-expand-lg navbar-dark bg-primary">|</nav>
+
+  5 = TEXT
+  5.value (
+    <a class="navbar-brand" href="#">Menu comparison</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  )
+
+  10 = HMENU
+  10 {
+    stdWrap.wrap = <div class="collapse navbar-collapse" id="main_nav">|</div>
+    1 = TMENU
+    1 {
+      stdWrap.wrap = <ul class="navbar-nav">|</ul>
+      expAll = 1
+
+      NO = 1
+      NO {
+        ATagParams = class="nav-link"
+        wrapItemAndSub = <li class="nav-item">| </li>
+
+      }
+
+      ACT = 1
+      ACT {
+        ATagParams = class="nav-link active"
+      }
+
+      IFSUB < .NO
+      IFSUB {
+        ATagParams = class="nav-link dropdown-toggle" data-toggle="dropdown"
+        wrapItemAndSub = <li class="nav-item dropdown">| </li>
+      }
+
+      ACTIFSUB < .IFSUB
+      ACTIFSUB {
+        ATagParams = class="nav-link dropdown-toggle active" data-toggle="dropdown"
+      }
+    }
+
+    2 = TMENU
+    2 {
+      expAll = 1
+      wrap = <ul class="dropdown-menu">|</ul>
+
+      NO = 1
+      NO {
+        wrapItemAndSub = <li>|</li>
+        ATagParams = class="dropdown-item"
+      }
+
+      ACT < .NO
+      ACT.ATagParams = class="dropdown-item active"
+
+      IFSUB >
+      IFSUB < .NO
+      IFSUB {
+        ATagBeforeWrap = 1
+        linkWrap = | &raquo;
+      }
+
+      ACTIFSUB < .IFSUB
+      ACTIFSUB {
+        ATagParams = class="dropdown-item active"
+      }
+    }
+
+    3 < .2
+    3 {
+      expAll = 1
+      wrap = <ul class="submenu dropdown-menu subdropdown level-2">|</ul>
+    }
+
+    4 < .3
+    4 {
+      expAll = 0
+      wrap = <ul class="submenu dropdown-menu subdropdown level-3">|</ul>
+      IFSUB >
+      ACTIFSUB >
+      CURIFSUB >
+    }
+  }
+}
