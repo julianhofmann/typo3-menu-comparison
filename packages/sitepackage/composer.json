@@ -14,7 +14,8 @@
   },
   "extra": {
     "typo3/cms": {
-      "extension-key": "sitepackage"
+      "extension-key": "sitepackage",
+      "skip-ter-packagist-import": true
     }
   }
 }
