@@ -33,23 +33,10 @@ return [
             'disableOwnMenuItem' => '0',
         ],
         'mysqlreport' => [
-            'addExplain' => '0',
-            'profileBackend' => '0',
-            'profileFrontend' => '1',
-            'slowQueryTime' => '10.0',
-        ],
-        'warming' => [
-            'crawler' => 'EliasHaeussler\\Typo3Warming\\Crawler\\ConcurrentUserAgentCrawler',
-            'crawlerOptions' => '',
-            'enablePageTree' => '1',
-            'enableToolbar' => '1',
-            'exclude' => '',
-            'limit' => '250',
-            'parserClientOptions' => '',
-            'strategy' => '',
-            'supportedDoktypes' => '1',
-            'verboseCrawler' => 'EliasHaeussler\\Typo3Warming\\Crawler\\OutputtingUserAgentCrawler',
-            'verboseCrawlerOptions' => '',
+            'activateExplainQuery' => '0',
+            'enableBackendLogging' => '0',
+            'enableFrontendLogging' => '0',
+            'slowQueryThreshold' => '10.0',
         ],
     ],
     'FE' => [
@@ -65,8 +52,6 @@ return [
     ],
     'GFX' => [
         'processor' => 'GraphicsMagick',
-        'processor_allowTemporaryMasksAsPng' => false,
-        'processor_colorspace' => 'RGB',
         'processor_effects' => false,
         'processor_enabled' => true,
         'processor_path' => '/usr/bin/',
@@ -127,8 +112,10 @@ return [
         'exceptionalErrors' => 12290,
         'features' => [
             'security.backend.enforceContentSecurityPolicy' => true,
-            'security.usePasswordPolicyForFrontendUsers' => true,
         ],
         'sitename' => 'New TYPO3 site',
+        'systemMaintainers' => [
+            3,
+        ],
     ],
 ];

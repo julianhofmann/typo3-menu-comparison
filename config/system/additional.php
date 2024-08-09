@@ -9,10 +9,10 @@ $changeSettings = [
     ],
     'EXTENSIONS' => [
         'mysqlreport' => [
-            'addExplain' => '0',
-            'profileBackend' => '0',
-            'profileFrontend' => '1',
-            'slowQueryTime' => '10.0',
+            'activateExplainQuery' => '0',
+            'enableBackendLogging' => '0',
+            'enableFrontendLogging' => '1',
+            'slowQueryThreshold' => '10.0',
         ],
     ],
     'SYS' => [
