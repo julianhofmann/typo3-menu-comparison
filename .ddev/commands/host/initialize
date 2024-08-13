@@ -4,7 +4,7 @@
 ## Usage: initialize
 ## Example: "ddev initialize"
 
-ddev import-db --src=.project/data/db.sql.gz
+ddev import-db --file=.project/data/db.sql.gz
 ddev typo3 install:setup
 mkdir -p .Build/public/fileadmin
 #cd .Build/public/ && tar xf ../../.project/data/fileadmin.tar.gz
