@@ -1,15 +1,29 @@
 base: 'https://menus.ddev.site/'
 languages:
   -
-    title: English
+    title: German
     enabled: true
     languageId: 0
     base: /
-    locale: en_US.UTF-8
+    locale: de_DE.UTF-8
+    navigationTitle: Deutsch
+    flag: de
+    hreflang: de-DE
+    websiteTitle: ''
+  -
+    title: English
+    enabled: true
+    locale: en-GB.UTF-8
+    hreflang: en-GB
+    base: /en
+    xml_sitemap_path: ''
+    websiteTitle: ''
     navigationTitle: English
-    flag: us
+    fallbackType: strict
+    fallbacks: ''
+    flag: gb
+    languageId: 1
 rootPageId: 1
-websiteTitle: ''
 routeEnhancers:
   PageTypeSuffix:
     type: PageType
@@ -24,3 +38,5 @@ routeEnhancers:
         type: StaticValueMapper
         map:
           pages: pages
+websiteTitle: ''
+xml_sitemap_path: ''

@@ -14,6 +14,16 @@ page {
     templateRootPaths {
       10 = EXT:sitepackage/Resources/Private/Templates/Page/
     }
+    partialRootPaths {
+      5 = EXT:sitepackage/Resources/Private/Partials/
+    }
+
+    dataProcessing.40 >
+    dataProcessing.40 = language-menu
+    dataProcessing.40 {
+      languages = auto
+      as = languageNavigation
+    }
   }
 
   // --------------------------------------------------------------------
@@ -112,6 +122,9 @@ page {
       .dropdown-item.active,
       .dropdown-item:active{
         background-color: #A5c85a !important;
+      }
+      .nav.justify-content-end .nav-link {
+        color: #A5c85a;
       }
       .navbar-dark .navbar-nav .nav-link {
         color: rgba(255,255,255,.75);

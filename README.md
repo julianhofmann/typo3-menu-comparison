@@ -25,7 +25,7 @@ comparison, can be found in three posts:
 #### Quick start
 
 `ddev initialize` will:
-* import a SQL-dump containing over 1,000 pages-records.
+* import a SQL-dump containing over 2,000 pages-records (2 languages).
 * setup TYPO3 v12
 * install a sitepackage containing 5 (plus 2) variants of identical menu
 
